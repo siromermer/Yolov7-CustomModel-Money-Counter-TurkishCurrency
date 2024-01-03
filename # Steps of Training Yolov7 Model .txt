@@ -1,0 +1,65 @@
+# Steps of Training Yolov7 Model 
+
+1) Create virtual environment 
+
+
+2) Prepare Dataset
+- Image Annotation can be done by LabelImg 
+- Image Annotation (format of yolo , if you have pascal you can convert it to yolo)
+
+- Create 2 folder  : train and validation  
+	train/
+	  - images/
+	  - labels/
+	validation/
+	  - images/
+	  - labels/
+
+- Split your images and labels to those folders
+- Labels and image names must be same for same instance for example : 
+	money1.jpeg(image file) --> this must be inside of train/images/
+	money1.txt (label file) --> this must be inside of train/labels/
+
+
+3) Prepare official Yolo repository 
+
+- Download yolo repository and extract it and give it a name like yolocustom
+
+- Inside of repository open requirements.txt and find proper pyTorch version
+- Delete pyTorch and torchvision lines in requirements.txt and save that file
+-  proper pyTorch version will be used in another txt file , check below
+
+- Create a new text file for torch installation with GPU (requirements_gpu.txt)
+-   proper pyTorch version : 
+	# example version
+	-i https://download.pytorch.org/whl/cu121
+	torch==2.1.0 
+	torchvision==0.16.0 
+- in anaconda prompt go yolo custom directory that you created and run following line :
+   pip install -r requirements.txt
+   pip install -r requirements_gpu.txt (this will install pytorch with cuda support)
+
+4) Modify Yolo files
+-Move train sets to the yolocustom/data (yolocustom is folder that you create)
+- make a copy of coco.yaml to custom_data.yaml(you can change give whatever name you want but in terminal you need to write proper name) 
+- open custom_data.yaml and define train and validation folder , define class number and class names
+- find cfg folder inside of yolocustom and copy the model that you want , make a copy of that model(.yaml) and change the name yolo_custom.yaml and open that file and make some adjustments (class number) , save file
+- download weights for yolo model and move them to the your custom directory yolocustom
+
+5) Training Model 
+- Open terminal and go to your custom model directory
+	# run this file but be aware of names , if you create files with different names change them
+	python train.py --workers 1 --device 0 --batch-size 8 --epochs 100 --img 640 640 --	data data/custom_data.yaml --hyp data/hyp.scratch.custom.yaml --cfg 	cfg/training/yolov7-	custom.yaml --name yolov7-custom --weights yolov7.pt
+
+6) Test model 
+	# yolo_money_best.pt --> best model 
+	# image file --> test3.jpeg , you can test videos like images
+	python detect.py --weights yolo_money_best.pt --conf 0.5 --img-size 640 --source 	test3.jpeg --no-trace
+
+
+
+
+
+
+
+
