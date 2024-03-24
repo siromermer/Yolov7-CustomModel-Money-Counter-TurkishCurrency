@@ -1,4 +1,4 @@
-I trained ssd-mobilenet-v2-fpnlite-320 model on this same dataset , if you want you can check it : https://github.com/siromermer/Money-Counter-TurkishCurrency<br><br>
+I trained ssd-mobilenet-v2-fpnlite-320 model on this same dataset , if you want you can check it  I explained step by step how to train custom SSD-mobilenet models  : https://github.com/siromermer/Money-Counter-TurkishCurrency<br><br>
 
 I collected 208 images of coin using my phone camera. These images showcase various backgrounds and different combinations of currency notes and coins (for instance, 3 units of 1 Turkish Lira, 5 units of 0.25 Turkish Lira...).<br>
 For now dataset is very small , but i will increase image number in future and train it again <br><br>
